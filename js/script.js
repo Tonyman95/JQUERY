@@ -8,7 +8,7 @@ $("#ElegirPelicula").click(()=>{
             console.log(data)
             $("#datosPeliculas").html(
                 "Titulo: " + data.pelicula.title+"<br>"+
-                "Año: "+ data.pelicula.year)
+                "Año: "+ data.pelicula.year+"<br>"+"Genero: "+ data.pelicula.genre)
             console.log(data.pelicula.title)
         }
     })
@@ -22,13 +22,14 @@ function getPeliculas(){
         success: function(data){
             console.log(data)
             const peliculasList = data.peliculas;
-            let cadenaOption = '<option>Lista de Peliculas</option>'
+            let cadenaOption = '<option></option>'
             peliculasList.map((data,index)=>{
                 console.log(data,index)
                 console.log(peliculasList[index])
                 cadenaOption+= '<option val='+data.id+'>'+data.id+'  '+data.title+'</option>';
             })
             $("#opcionesPeliculas").html(cadenaOption);
+            $("#opcionesPeliculas").select2();
 
         }
     })
@@ -44,7 +45,9 @@ function getDataPeliculas(valorSeleccionado){
             const peliculasList = data.peliculas;
             $("#datoPeliculas").html("<p>Titulo: "+peliculasList[numero -1].title+"<br>"+"Año: "+peliculasList[numero-1].year+"<br>"+"Genero: "+peliculasList[numero-1].genre+"</p>")
             console.log(peliculasList[numero -1].title)
+            
         }
+
     })
 }
 
